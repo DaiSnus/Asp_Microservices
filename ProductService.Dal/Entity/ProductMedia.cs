@@ -1,4 +1,6 @@
-﻿namespace ProductService.Dal.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace ProductService.Dal.Models;
 
 public class ProductMedia
 {
@@ -6,5 +8,5 @@ public class ProductMedia
     public Guid ProductId { get; set; }
     public string Url { get; set; } = "";
     
-    public Product? Product { get; set; }
+    [JsonIgnore] public Product? Product { get; set; }
 }

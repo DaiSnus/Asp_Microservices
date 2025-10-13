@@ -25,7 +25,7 @@ public class ProductController : ControllerBase
     /// <param name="token">Токен отмены</param>
     /// <returns>Список продуктов</returns>
     [HttpGet]
-    public async Task<IActionResult> GetProducts([FromBody] GetProductRequest request, CancellationToken token)
+    public async Task<IActionResult> GetProducts([FromQuery] GetProductRequest request, CancellationToken token)
     {
         var products = await productService.GetByArgsAsync(request, token);
         return Ok(products);
@@ -102,7 +102,7 @@ public class ProductController : ControllerBase
     /// <param name="token">Токен отмены</param>
     /// <returns>Статистика товара/404 при неверном id</returns>
     [HttpGet("{id}/statistics")]
-    public async Task<IActionResult> GetStatistics([FromBody] GetStatisticRequest request, CancellationToken token)
+    public async Task<IActionResult> GetStatistics([FromQuery] GetStatisticRequest request, CancellationToken token)
     {
         var statistics = await productStatisticService.GetAsync(request, token);
         return statistics == null ?  NotFound() : Ok(statistics);

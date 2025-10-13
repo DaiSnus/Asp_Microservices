@@ -1,4 +1,5 @@
-﻿using ProductService.Dal.Models.Enums;
+﻿using System.Text.Json.Serialization;
+using ProductService.Dal.Models.Enums;
 
 namespace ProductService.Dal.Models;
 
@@ -12,5 +13,5 @@ public class ProductStatistic
     public decimal TotalRevenue { get; set; }
     public decimal TotalMargin { get; set; }
     
-    public Product? Product { get; set; }
+    [JsonIgnore] public Product? Product { get; set; }
 }

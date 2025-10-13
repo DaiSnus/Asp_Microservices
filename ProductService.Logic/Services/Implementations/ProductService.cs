@@ -51,7 +51,7 @@ public class ProductService : IProductService
         
         if (product == null) return;
         
-        product.ToppedAt =  DateTime.Now;
+        product.ToppedAt =  DateTime.UtcNow;
         product.Amount += amount;
         
         await productRepository.UpdateAsync(product, token);
