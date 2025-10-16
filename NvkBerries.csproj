@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="OrderService\OrderService.Application\" />
+      <Folder Include="ProductService\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="ProductService.Dal\bin\Debug\net8.0\ProductService.Dal.deps.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Dal\bin\Debug\net8.0\ProductService.Dal.runtimeconfig.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Dal\obj\Debug\net8.0\ProductService.Dal.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Dal\obj\Debug\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Dal\obj\ProductService.Dal.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Dal\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Dal\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Logic\bin\Debug\net8.0\ProductService.Logic.deps.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Logic\obj\Debug\net8.0\ProductService.Logic.sourcelink.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Logic\obj\Debug\net8.0\staticwebassets.build.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Logic\obj\ProductService.Logic.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Logic\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="ProductService.Logic\obj\project.packagespec.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+    </ItemGroup>
+
+</Project>
