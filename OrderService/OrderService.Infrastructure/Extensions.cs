@@ -3,7 +3,7 @@ using OrderService.Domain.Repository.Interfaces;
 using OrderService.Infrastructure.DataLayer;
 using OrderService.Infrastructure.Repository.Implementations;
 
-namespace NvkBerries.OrderService.OrderService.Infrastructure;
+namespace OrderService.Infrastructure;
 
 public static class Extensions
 {

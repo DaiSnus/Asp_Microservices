@@ -1,9 +1,10 @@
 using OrderService.Application.OrderService.Application.Dtos;
+using OrderService.Application.Services.Interfaces;
 using OrderService.Domain.Enums;
 using OrderService.Domain.Models;
 using OrderService.Domain.Repository.Interfaces;
 
-namespace DefaultNamespace;
+namespace OrderService.Application.Services.Implementations;
 
 public class OrderService : IOrderService
 {

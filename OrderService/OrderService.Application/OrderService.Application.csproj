@@ -12,13 +12,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+      <ProjectReference Include="..\OrderService.Domain\OrderService.Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\..\NvkBerries.csproj" />
-      <ProjectReference Include="..\..\OrderService.Application\OrderService.Application\OrderService.Application.csproj" />
+      <_ContentIncludedByDefault Remove="OrderService.Application\obj\OrderService.Application.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="OrderService.Application\obj\project.assets.json" />
     </ItemGroup>
 
 </Project>

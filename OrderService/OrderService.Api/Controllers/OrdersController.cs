@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderService.Application.OrderService.Application.Dtos;
+using OrderService.Application.Services.Interfaces;
 using OrderService.Domain.Enums;
-using OrderService.Domain.Repository.Interfaces;
 
-namespace DefaultNamespace;
+namespace OrderService.Api.Controllers;
 
 [ApiController]
 [Route("api/orders")]
@@ -34,7 +34,7 @@ public class OrdersController : ControllerBase
     /// <param name="dto">id покупателя, магазина, продукты в заказе с количеством</param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] CreateOrderDto dto)
+    public async Task<IActionResult> Create([FromBody] CreateOrderDto dto)
     {
         var order = await orderService.CreateOrderAsync(dto);
         return CreatedAtAction(nameof(GetOrder), new { id = order.Id }, order);

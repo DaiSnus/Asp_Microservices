@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="Properties\launchSettings.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.10" />
+      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\NvkBerries.csproj" />
+      <ProjectReference Include="..\OrderService.Application\OrderService.Application.csproj" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="OrderService.Infrastructure\obj\OrderService.Infrastructure.csproj.nuget.dgspec.json" />
+      <_ContentIncludedByDefault Remove="OrderService.Infrastructure\obj\project.assets.json" />
+    </ItemGroup>
+
+</Project>

@@ -2,7 +2,7 @@ using OrderService.Application.OrderService.Application.Dtos;
 using OrderService.Domain.Enums;
 using OrderService.Domain.Models;
 
-namespace DefaultNamespace;
+namespace OrderService.Application.Services.Interfaces;
 
 public interface IOrderService
 {
