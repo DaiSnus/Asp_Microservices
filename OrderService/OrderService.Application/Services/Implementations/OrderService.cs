@@ -1,3 +1,6 @@
+using DefaultNamespace;
+using Microsoft.AspNetCore.Identity;
+using OrderService.Application.Clients.Interfaces;
 using OrderService.Application.OrderService.Application.Dtos;
 using OrderService.Application.Services.Interfaces;
 using OrderService.Domain.Enums;
@@ -8,54 +11,57 @@ namespace OrderService.Application.Services.Implementations;
 
 public class OrderService : IOrderService
 {
-    private readonly IOrderRepository orderRepository;
-    private readonly IProductRepository productRepository;
+    private readonly IOrderRepository _orderRepository;
+    private readonly IProductRepository _productRepository;
+    private readonly IProductApiClient _productApiClient;
 
-    public OrderService(IOrderRepository orderRepository, IProductRepository productRepository)
+    public OrderService(IOrderRepository orderRepository, IProductRepository productRepository, IProductApiClient productApiClient)
     {
-        this.orderRepository = orderRepository;
-        this.productRepository = productRepository;
+        _orderRepository = orderRepository;
+        _productRepository = productRepository;
+        _productApiClient = productApiClient;
     }
-
-    public async Task<Order> CreateOrderAsync(CreateOrderDto dto)
+    
+    public async Task<Guid> CreateOrderAsync(CreateOrderDto dto)
     {
-        if (dto.Items == null || dto.Items.Count == 0)
-            throw new InvalidOperationException("Order Items cannot be null or empty.");
+        if (dto.Items.Count == 0)
+            throw new ArgumentException("No items found in order.", nameof(dto.Items));
         
-        var orderItems =  new List<OrderItem>();
+        var products = new List<OrderItem>();
         foreach (var item in dto.Items)
         {
-            var productSnapshot = await productRepository.GetByIdAsync(item.ProductId);
-            if (productSnapshot == null) 
-               throw new InvalidOperationException("Product not found.");
-                
-            orderItems.Add(new OrderItem
+            var product = await _productApiClient.GetProductByIdAsync(item.ProductId);
+            if (product == null)
+                throw new InvalidOperationException($"Product with id {item.ProductId} not available.");
+            
+            products.Add(new OrderItem
             {
-                Id = item.ProductId, 
+                ProductId = item.ProductId,
                 Quantity = item.Quantity,
-                Price = productSnapshot.Price
+                Price = product.Price,
             });
         }
 
-        var newOrder = new Order
+        var order = new Order
         {
+            Items = products,
             BuyerId = dto.BuyerId,
             ShopId = dto.ShopId,
-            Items = orderItems,
         };
+
+        await _orderRepository.AddAsync(order);
         
-        await orderRepository.AddAsync(newOrder);
-        return newOrder;
+        return order.Id;
     }
 
     public async Task<Order?> GetByIdAsync(Guid orderId)
     {
-        return await orderRepository.GetByIdAsync(orderId);
+        return await _orderRepository.GetByIdAsync(orderId);
     }
 
     public async Task UpdateStatus(Guid orderId, OrderStatus status)
     {
-        var order = await orderRepository.GetByIdAsync(orderId);
+        var order = await _orderRepository.GetByIdAsync(orderId);
         if (order == null)
             throw new InvalidOperationException("Order not found");
 
@@ -73,22 +79,22 @@ public class OrderService : IOrderService
             default: throw new ArgumentOutOfRangeException("Invalid order status");
         }
         
-        await orderRepository.UpdateAsync(order);
+        await _orderRepository.UpdateAsync(order);
     }
 
     public async Task<List<Order>> GetShopOrders(Guid shopId)
     {
-        return await orderRepository.GetByShopIdAsync(shopId);
+        return await _orderRepository.GetByShopIdAsync(shopId);
     }
 
     public async Task<List<Order>> GetBuyerOrders(Guid buyerId)
     {
-        return await orderRepository.GetByBuyerIdAsync(buyerId);
+        return await _orderRepository.GetByBuyerIdAsync(buyerId);
     }
 
     public async Task UpdateOrderItemsAsync(Guid orderId, UpdateItemsDto items)
     {
-        var order = await orderRepository.GetByIdAsync(orderId);
+        var order = await _orderRepository.GetByIdAsync(orderId);
         if (order == null) 
             throw new InvalidOperationException("Order not found");
         
@@ -98,7 +104,7 @@ public class OrderService : IOrderService
         var newItems = new List<OrderItem>();
         foreach (var item in items.Items)
         {
-            var productSnapshot = await productRepository.GetByIdAsync(item.ProductId);
+            var productSnapshot = await _productRepository.GetByIdAsync(item.ProductId);
             if (productSnapshot == null)
                 throw new InvalidOperationException("Product not found");
             
@@ -111,6 +117,38 @@ public class OrderService : IOrderService
         }
         
         order.Items = newItems;
-        await orderRepository.UpdateAsync(order);
+        await _orderRepository.UpdateAsync(order);
+    }
+    
+    [Obsolete]
+    public async Task<Order> CreateOrderObsoleteAsync(CreateOrderDto dto)
+    {
+        if (dto.Items == null || dto.Items.Count == 0)
+            throw new InvalidOperationException("Order Items cannot be null or empty.");
+        
+        var orderItems =  new List<OrderItem>();
+        foreach (var item in dto.Items)
+        {
+            var productSnapshot = await _productRepository.GetByIdAsync(item.ProductId);
+            if (productSnapshot == null) 
+                throw new InvalidOperationException("Product not found.");
+                
+            orderItems.Add(new OrderItem
+            {
+                Id = item.ProductId, 
+                Quantity = item.Quantity,
+                Price = productSnapshot.Price
+            });
+        }
+
+        var newOrder = new Order
+        {
+            BuyerId = dto.BuyerId,
+            ShopId = dto.ShopId,
+            Items = orderItems,
+        };
+        
+        await _orderRepository.AddAsync(newOrder);
+        return newOrder;
     }
 }

@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using OrderService.Application.Clients.Interfaces;
 using OrderService.Domain.Repository.Interfaces;
+using OrderService.Infrastructure.Clients.Implementations;
 using OrderService.Infrastructure.DataLayer;
 using OrderService.Infrastructure.Repository.Implementations;
 
@@ -13,5 +15,6 @@ public static class Extensions
         
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IProductApiClient, ProductApiClient>();
     }
 }
