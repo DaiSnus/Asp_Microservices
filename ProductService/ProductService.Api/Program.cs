@@ -16,7 +16,7 @@ public class Program
         builder.Services.AddControllers();
         builder.Services.AddSwaggerGen();
         
-        builder.Services.AddPsqlLayer(builder.Configuration.GetConnectionString("default")!);
+        builder.Services.AddPsqlLayer(builder.Configuration.GetConnectionString("product")!);
 
         builder.Services.AddScoped<IProductStatisticService, ProductStatisticService>();
         builder.Services.AddScoped<IProductService, Logic.Services.Implementations.ProductService>();

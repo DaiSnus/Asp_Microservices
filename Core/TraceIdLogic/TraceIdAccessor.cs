@@ -21,6 +21,8 @@ public static class StartUpTraceId
         serviceCollection
             .TryAddScoped<ITraceIdAccessor>(provider => provider.GetRequiredService<TraceIdAccessor>());
 
+        serviceCollection.AddTransient<TraceIdHeaderHandler>();
+        
         return serviceCollection;
     }
 }
