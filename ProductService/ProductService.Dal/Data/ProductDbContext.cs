@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ProductService.Dal.Entity;
 using ProductService.Dal.Models;
 
 namespace ProductService.Dal.Data;

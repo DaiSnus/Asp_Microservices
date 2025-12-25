@@ -1,4 +1,5 @@
-﻿using ProductService.Dal.Models;
+﻿using ProductService.Dal.Entity;
+using ProductService.Dal.Models;
 using ProductService.Dal.Repository.Interfaces;
 using ProductService.Logic.Dtos;
 using ProductService.Logic.Dtos.Requests;

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using ProductService.Dal.Models.Enums;
 
-namespace ProductService.Dal.Models;
+namespace ProductService.Dal.Entity;
 
 public class ProductStatistic
 {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ProductService.Dal.Models;
+namespace ProductService.Dal.Entity;
 
 public class ProductMedia
 {
