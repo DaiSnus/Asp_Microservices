@@ -20,4 +20,9 @@
       <_ContentIncludedByDefault Remove="OrderService.Application\obj\project.assets.json" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MassTransit" Version="8.5.7" />
+      <PackageReference Include="MassTransit.Abstractions" Version="8.5.7" />
+    </ItemGroup>
+
 </Project>

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProductService.Dal.Data;
+using ProductService.Dal.Entity;
 using ProductService.Dal.Models;
 using ProductService.Dal.Repository.Interfaces;
 

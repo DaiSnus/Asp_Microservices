@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using ProductService.Dal.Data;
+using ProductService.Dal.Entity;
 using ProductService.Dal.Models;
 using ProductService.Dal.Models.Enums;
 using ProductService.Dal.Repository.Interfaces;

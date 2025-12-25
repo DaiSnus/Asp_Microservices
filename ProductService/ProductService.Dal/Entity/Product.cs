@@ -1,6 +1,7 @@
-﻿using ProductService.Dal.Models.Enums;
+﻿using ProductService.Dal.Models;
+using ProductService.Dal.Models.Enums;
 
-namespace ProductService.Dal.Models;
+namespace ProductService.Dal.Entity;
 
 public class Product
 {

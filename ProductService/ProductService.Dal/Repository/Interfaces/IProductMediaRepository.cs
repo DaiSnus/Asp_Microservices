@@ -1,4 +1,5 @@
-﻿using ProductService.Dal.Models;
+﻿using ProductService.Dal.Entity;
+using ProductService.Dal.Models;
 
 namespace ProductService.Dal.Repository.Interfaces;
 
