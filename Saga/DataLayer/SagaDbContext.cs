@@ -2,9 +2,9 @@ using MassTransit;
 using MassTransit.EntityFrameworkCoreIntegration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using OrderService.Application.Saga;
+using Saga.Saga;
 
-namespace OrderService.Infrastructure.DataLayer;
+namespace Saga;
 
 public class SagaDbContext : MassTransit.EntityFrameworkCoreIntegration.SagaDbContext
 {

@@ -1,10 +1,11 @@
-namespace Core.Saga.Contracts.Orchestrations;
+namespace Saga.Contracts.Orchestrations;
 
-public record StartOrderCreation
+public record CreateOrder
 (
     Guid OrderId,
     Guid BuyerId,
     Guid ProductId,
+    Guid ShopId,
     int Quantity,
     decimal Amount
 );
@@ -40,7 +41,7 @@ public record WarehouseReservationFailed
     Guid ProductId
 );
     
-public record ReleaseStock
+public record ReleaseWarehouse
 (
     Guid OrderId,
     Guid ProductId,

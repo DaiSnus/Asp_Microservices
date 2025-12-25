@@ -1,6 +1,6 @@
 using MassTransit;
 
-namespace OrderService.Application.Saga;
+namespace Saga.Saga;
 
 public class OrderState : SagaStateMachineInstance
 {
@@ -17,6 +17,8 @@ public class OrderState : SagaStateMachineInstance
     public int Quantity { get; set; }
     
     public decimal Amount { get; set; }
+    
+    public string TransactionId { get; set; }
     
     public DateTime Created { get; set; }
 }

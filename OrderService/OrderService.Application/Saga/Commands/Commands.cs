@@ -1,3 +1,15 @@
-namespace OrderService.Application.Saga.Commands;
+namespace OrderService.Application.Saga.Commands.Orchestration;
 
-public record Commands();
+public record ReserveWarehouseCommand
+(
+    Guid OrderId,
+    Guid ProductId,
+    int Quantity
+);
+
+public record ProcessPaymentCommand
+(
+    Guid OrderId,
+    Guid BuyerId,
+    decimal Amount    
+);
